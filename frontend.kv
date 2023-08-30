@@ -1,0 +1,78 @@
+#:kivy 2.2.1
+<CameraScreen>:
+    GridLayout:        
+        cols: 1
+        padding: 10
+        spacing: 10
+        Camera:
+            id: camera
+            resolution: (640, 480)
+            play: False
+            size_hint_y: 0.8
+            opacity: 0
+        Button:
+            id: button 
+            size_hint_y: 0.1
+            text: 'Start Camera'
+            on_press: root.start() if root.ids.camera.play == False else root.stop()
+            # change the button color
+            background_normal: 'App-4-Webcam-Photo-Sharer/images/normal.png'
+            #when the button is pressed, it cahnges for a few seconds
+            background_down: 'App-4-Webcam-Photo-Sharer/images/down.png'
+
+        Button:
+            text: 'Capture'
+            size_hint_y: 0.1
+            on_press: root.capture()
+            # change the button color
+            background_normal: 'App-4-Webcam-Photo-Sharer/images/normal.png'            
+            background_down: 'App-4-Webcam-Photo-Sharer/images/down.png'
+
+<ImageScreen>:
+    GridLayout:
+        cols: 1
+        padding: 10
+        spacing: 10
+        Image:
+            id: img
+            size_hint_y: 0.7
+        Button:
+            text: 'Create Sharable Link'
+            size_hint_y: 0.1
+            on_press: root.create_link()            
+            background_normal: 'App-4-Webcam-Photo-Sharer/images/normal.png'            
+            background_down: 'App-4-Webcam-Photo-Sharer/images/down.png'
+        Label:
+            id: link
+            text: ''
+            size_hint_y: 0.1
+        GridLayout:
+            cols: 2
+            size_hint_y: 0.1
+            Button:
+                text: 'Copy Link'
+                on_press: root.copy_link()                
+                background_normal: 'App-4-Webcam-Photo-Sharer/images/normal.png'                
+                background_down: 'App-4-Webcam-Photo-Sharer/images/down.png'
+            Button:
+                text: 'Open Link'
+                on_press: root.open_link()                
+                background_normal: 'App-4-Webcam-Photo-Sharer/images/normal.png'                
+                background_down: 'App-4-Webcam-Photo-Sharer/images/down.png'
+
+<RootWidget>:    
+    canvas.before:
+        # Change the background color of the app
+        Color:
+            # to make it not visible give alpha value closer to 1
+            rgba: (0.3, 0.2, 0.1, 1)
+        # Draw a rectangle with the color selected    
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    CameraScreen:
+        id: camera_screen
+        name: 'camera_screen'
+    ImageScreen:
+        id: image_screen
+        name: 'image_screen'

@@ -1,0 +1,27 @@
+#:kivy 2.2.1
+
+<FirstScreen>:
+    GridLayout:
+        cols: 1
+        padding : 10
+        spacing: 10 #space between the widget
+        Image: # declare what widget we have; Image widget
+            #source:'files/sunny.jpg'
+            id: img
+            size_hint_y: 0.8
+        TextInput:
+            id: user_query
+            size_hint_y: 0.1
+        Button:
+            text: 'Search Image'
+            size_hint_y: 0.1
+            #Add behavior when button is pressed
+            on_press: root.set_image()
+
+<RootWidget>: # write its children
+    FirstScreen:
+        id: first_screen
+        name: 'first_screen'
+
+
+
